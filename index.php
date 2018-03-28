@@ -18,7 +18,6 @@
     <link rel="stylesheet" type="php" href="style.php">
     <title><?php echo $title ?></title>
   </head>
-
     <div class="edit" id="edit_basis">
         <h1>Grundeinstellungen</h1>
         <form action="update.php" method="post">
@@ -36,9 +35,19 @@
         <h1>Erweiterte Einstellungen</h1>
         <form action="bearbeiten_session.php" method="post">
             <p>Welchen Bereich möchten Sie bearbeiten:
-            <option></option>
-            <input class="versteckt" checked="checked" type="radio" name="datenbank" value="basisdaten">
-            <input type="submit" value="speichern">
+              <select>
+                <option>Bitte wählen</option>
+              <?php
+              $bearbeiten = "SELECT * FROM bereiche WHERE anzeigen = 'yes'";
+                  foreach ($pdo->query($bearbeiten) as $row) {
+                      echo "<option>" .$row['title']. "</option>";
+                  }
+              ?>
+            </select>
+
+              
+
+            <input type="submit" value="bearbeiten">
         </form>
     </div>
     <div class="clear" id="clear">
@@ -83,7 +92,7 @@
         font-family: sans-serif;
     }
 
-    input {
+    input, select {
       padding: 3px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -92,6 +101,13 @@
       background-color: white;
       color: #888888;
     }
+
+    input[type=submit] {
+      background-color: orange;
+      color: white;
+      border: 2px solid orange;
+    }
+
 
     .clear {
       clear: both;
