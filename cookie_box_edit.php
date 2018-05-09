@@ -1,6 +1,7 @@
 <?php
 $box = $_GET['box'];
 
+
     setcookie("box_background_$box", $_GET['box_background'],time()+(3600*365));
 if(isset($_GET['bild_background'])){
     setcookie("bild_background_$box", $_GET['bild_background'],time()+(3600*365));
@@ -34,6 +35,15 @@ if(isset($_GET['iframe'])){
     setcookie("border_radius_$box", $_GET['border_radius'],time()+(3600*365));
     setcookie("titel_$box", $_GET['titel'],time()+(3600*365));
     setcookie("fliesstext_$box", $_GET['fliesstext'],time()+(3600*365));
+	
+if(isset($_COOKIE["fliesstext_$box"])){}{
+if(isset($_GET['fliesstext'])){
+    setcookie("voreinstellungen_$box","Ja",time()+(3600*365));
+}else{
+	
+}
+}
+
 
   header('Location: live_vorschau.php');
 ?>

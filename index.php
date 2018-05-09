@@ -24,7 +24,8 @@ setcookie("hoverschrift","#ffffff",time()+(3600*365));
 
 
 
-    setcookie("box_background_$i","#ffffff",time()+(3600*365));
+    setcookie("voreinstellungen_$i","Ja",time()+(3600*365));
+	setcookie("box_background_$i","#ffffff",time()+(3600*365));
     setcookie("height_$i","200",time()+(3600*365));
     setcookie("width_$i","70",time()+(3600*365));
     setcookie("padding_top_$i","50",time()+(3600*365));
