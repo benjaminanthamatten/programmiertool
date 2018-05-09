@@ -1,47 +1,134 @@
-
 <?php
+    if($_COOKIE['edit_anzeigen'] == "nein"){
+ ?>
+    <a href="cookie_edit_schliessen.php?edit_anzeigen=ja"><div id="dragBox" onmousedown="dragStart(this);">
+        <img class="oeffnen" width="20px" src="oeffnen.png" />
+    </div></a>
+<?php
+    }else{
+
+
     if(isset($_GET['box_einstellungen'])){
 ?>
 
 
 <div id="dragBox" onmousedown="dragStart(this);">
-    <h3>Bereich <?php echo $_GET['box'] ?> bearbeiten</h3>
     <div id="dragContBox">
-    <a href="live_vorschau.php">Zurück zu den Grundeinstellungen</a>  
-        
+    <a href="cookie_edit_schliessen.php?edit_anzeigen=nein"><img class="schliessen" width="20px" src="schliessen.png" /></a>
     <form action="cookie_box_edit.php" method="get">
     <?php $box = $_GET['box']; ?>
-       
-    
-    <p>Background:</p>
-    <input type="color" name="box_background" value="<?php echo $_COOKIE["box_background_$box"] ?>">
-    <p>Höhe:</p>
-    <input type="number" name="height" value="<?php echo $_COOKIE["height_$box"] ?>">
-    <p>Breite:</p>
-    <input type="number" name="width" value="<?php echo $_COOKIE["width_$box"] ?>">
-    <p>Abstand oben (innerhalb der Box):</p>
-    <input type="number" name="padding_top" value="<?php echo $_COOKIE["padding_top_$box"] ?>">
-    <p>Abstand unten (innerhalb der Box):</p>
-    <input type="number" name="padding_bottom" value="<?php echo $_COOKIE["padding_bottom_$box"] ?>">
-    <p>Abstand links (innerhalb der Box):</p>
-    <input type="number" name="padding_left" value="<?php echo $_COOKIE["padding_left_$box"] ?>">
-    <p>Abstand rechts (innerhalb der Box):</p>
-    <input type="number" name="padding_right" value="<?php echo $_COOKIE["padding_right_$box"] ?>">
-    <p>Abstand oben (ausserhalb der Box):</p>
-    <input type="number" name="margin_top" value="<?php echo $_COOKIE["margin_top_$box"] ?>">  
-    <p>Abstand unten (ausserhalb der Box):</p>
-    <input type="number" name="margin_bottom" value="<?php echo $_COOKIE["margin_bottom_$box"] ?>"> 
-    <p>Abrundung der Ecken:</p>
-    <input type="number" name="border_radius" value="<?php echo $_COOKIE["border_radius_$box"] ?>"> 
-    <p>Titel:</p>
-    <input type="text" name="titel" value="<?php if(isset($_COOKIE["titel_$box"])){echo $_COOKIE["titel_$box"];} ?>"> 
-    <p>Fliesstext:</p>
-    <textarea name="fliesstext"><?php if(isset($_COOKIE["fliesstext_$box"])){echo $_COOKIE["fliesstext_$box"];} ?></textarea>
-    
-    <input type="radio" checked="checked" name="box" value="<?php echo $box ?>">
-    <input type="submit" value="speichern">
+
+        <h3>Bereichseinstellungen [Bereich: <?php echo $box = $_GET['box']; ?>]</h3>
+
+        <table>
+            <tr>
+                <th>Grösse</th>
+                <th></th>
+                <th>Ecken (Abrundung)</th>
+                <th></th>
+                <th>Hintergrund</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Höhe:</td>
+                <td><input type="number" name="height" value="<?php echo $_COOKIE["height_$box"] ?>"></td>
+                <td>Abrundung:</td>
+                <td><input type="number" name="border_radius" value="<?php echo $_COOKIE["border_radius_$box"] ?>"> </td>
+                <td>Farbe:</td>
+                <td><input type="color" name="box_background" value="<?php echo $_COOKIE["box_background_$box"] ?>"></td>
+            </tr>
+            <tr>
+                <td>Breite (%):</td>
+                <td><input type="number" name="width" value="<?php echo $_COOKIE["width_$box"] ?>"></td>
+                <td></td>
+                <td></td>
+                <td>Bild-Link:</td>
+                <?php if(isset($_COOKIE["bild_background_$box"])){ ?>
+                <td><input type="text" name="bild_background" value="<?php echo $_COOKIE["bild_background_$box"] ?>"></td>
+                <?php }else{ ?>
+                <td><input type="text" name="bild_background" value=""></td>
+                <?php } ?>
+            </tr>
+        </table>
+
+        <h3>Abstände</h3>
+        <table>
+            <tr>
+                <th>Innen-Abstand</th>
+                <th></th>
+                <th>Aussen-Abstand</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Oben:</td>
+                <td><input type="number" name="padding_top" value="<?php echo $_COOKIE["padding_top_$box"] ?>"></td>
+                <td>Oben:</td>
+                <td><input type="number" name="margin_top" value="<?php echo $_COOKIE["margin_top_$box"] ?>"></td>
+            </tr>
+            <tr>
+                <td>Unten:</td>
+                <td><input type="number" name="padding_bottom" value="<?php echo $_COOKIE["padding_bottom_$box"] ?>"></td>
+                <td>Unten:</td>
+                <td><input type="number" name="margin_bottom" value="<?php echo $_COOKIE["margin_bottom_$box"] ?>"></td>
+            </tr>
+            <tr>
+                <td>Breite (%):</td>
+                <td><input type="number" name="width_inhalt" value="<?php echo $_COOKIE["width_inhalt_$box"] ?>"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>Bereich-Inhalt:</h3>
+        <table>
+            <tr>
+              <th>Seite einbinden</th>
+              <th></th>
+              <th>iFrame</th> 
+              <th></th>
+              <th>Medien</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Link:</td>
+              <td><input type="text" name="einbinden_link" value="<?php if(isset($_COOKIE["einbinden_link_$box"])){echo $_COOKIE["einbinden_link_$box"];} ?>"></td>
+              <td>iFrame-Link</td>
+              <td><input type="text" name="iframe" value="<?php if(isset($_COOKIE["iframe_$box"])){echo $_COOKIE["iframe_$box"];} ?>"></td>
+              <td>Bild-Link</td>
+              <td><input type="text" name="bild_box" value="<?php if(isset($_COOKIE["bild_box_$box"])){echo $_COOKIE["bild_box_$box"];} ?>"></td>
+            </tr>
+            <tr>
+              <td>Höhe (px)</td>
+              <td><input type="number" name="einbinden_hoehe" value="<?php if(isset($_COOKIE["einbinden_hoehe_$box"])){echo $_COOKIE["einbinden_hoehe_$box"];} ?>"></td>
+              <td></td>
+              <td></td>
+              <td>Bild-Breite</td>
+              <td><input type="text" name="bild_breite" value="<?php if(isset($_COOKIE["bild_breite_$box"])){echo $_COOKIE["bild_breite_$box"];} ?>"></td>
+            </tr>
+            <tr>
+              <td>Breite (%)</td>
+              <td><input type="number" name="einbinden_breite" value="<?php if(isset($_COOKIE["einbinden_breite_$box"])){echo $_COOKIE["einbinden_breite_$box"];} ?>"></td>
+              <td></td>
+              <td></td>
+            </tr>
+        </table>
+
+        <br><br>
+
+        <table>
+          <tr>
+            <td>Titel:</td>
+            <td><input type="text" name="titel" value="<?php if(isset($_COOKIE["titel_$box"])){echo $_COOKIE["titel_$box"];} ?>"></td>
+            <td>Text:</td>
+            <td><textarea name="fliesstext"><?php if(isset($_COOKIE["fliesstext_$box"])){echo $_COOKIE["fliesstext_$box"];} ?></textarea></td>
+          </tr>
+        </table>
+
+
+    <input class="versteckt" type="radio" checked="checked" name="box" value="<?php echo $box ?>">
+    <input type="submit" value="zurück / speichern">
     </form>
-        
+
     </div>
 </div>
 
@@ -52,10 +139,11 @@
 
 
   <div id="dragBox" onmousedown="dragStart(this);">
+    <a href="cookie_edit_schliessen.php?edit_anzeigen=nein"><img class="schliessen" width="20px" src="schliessen.png" /></a>
     <h3>Grundeinstellungen</h3>
     <div id="dragContBox">
     <form action="cookie_basis.php" method="get">
-        
+
         <table>
             <tr>
                 <th>Ersten Schritte</th>
@@ -82,7 +170,7 @@
                 </td>
                 <td>Schriftart:</td>
                 <td><select name='text_schriftart'>
-                        <option value="<?php echo $_COOKIE['text_schriftart'] ?>">wählen</option>           
+                        <option value="<?php echo $_COOKIE['text_schriftart'] ?>">wählen</option>
                         <option>Roboto</option>
                         <option>Roboto Slab</option>
                         <option>Open Sans</option>
@@ -164,47 +252,95 @@
                 <td></td>
                 <td>Farbe:</td>
                 <td><input type="color" value="<?php echo $_COOKIE['titelfarbe'] ?>" name="titelfarbe"></td>
-                <td>Farbe:</td>
+                <td>Bild:</td>
                 <td><input type="color" value="<?php echo $_COOKIE['textfarbe'] ?>" name="textfarbe"></td>
             </tr>
-        </table>      
+        </table>
+        
+        <table>
+            <tr>
+                <th>Navigation</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Hintergrundfarbe</td>
+                <td><input type="color" value="<?php echo $_COOKIE['navifarbe'] ?>" name="navifarbe"></td>
+            </tr>
+            <tr>
+                <td>Schriftfarbe</td>
+                <td><input type="color" value="<?php echo $_COOKIE['navischrift'] ?>" name="navischrift"></td>
+            </tr>
+            <tr>
+                <td>Mouse-Hover Hintergrund</td>
+                <td><input type="color" value="<?php echo $_COOKIE['hoverfarbe'] ?>" name="hoverfarbe"></td>
+            </tr>
+            <tr>
+                <td>Mouse-Hover Schriftfarbe</td>
+                <td><input type="color" value="<?php echo $_COOKIE['hoverschrift'] ?>" name="hoverschrift"></td>
+            </tr>
+            <tr>
+                <td>Breite (%)</td>
+                <td><input type="number" value="<?php echo $_COOKIE['navibreite'] ?>" name="navibreite"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
         <input type="submit" value="speichern">
     </form>
-  </div>        
-        
+  <br>
+  <a href="download.php">Quellcode herunterladen</a>
+  </div>
+
 
   </div>
 
-<?php } // if verzweigung schliessen ?>
+<?php }} // if verzweigung schliessen ?>
 
 <!-- SCRIPT UM DAS DIV MIT DER MAUS VERSCHIEBEN ZU KÖNNEN -->
-    
+
 <style type="text/css">
+
+.versteckt {
+    display: none;
+}
+    
+img.schliessen {
+    float: right;
+    margin: -5px -5px 0 0;
+}
+    
+img.schliessen:hover {
+    -webkit-filter: grayscale(2);
+    filter: grayscale(2);
+}
 
 td {
     color: #888888;
     font-family: 'Roboto';
     font-weight: 300;
     padding: 4px 10px 4px 0px;
-}  
+    vertical-align: top;
+}
 
 th {
     color: #FF9677;
     font-family: 'Roboto';
     font-weight: 700;
     text-align: left;
-} 
-    
+}
+
 textarea {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid #cccccc;  
+    border: 1px solid #cccccc;
     color: #FF9677;
-    width: 100%;
-    height: 100px;
+    width: 400px;
+    height: 90px;
 }
-    
+
 input, select {
     background-color: #ffffff;
     padding: 3px 7px 3px 7px;
@@ -215,9 +351,9 @@ input, select {
     width: 100px;
     color: #FF9677;
 }
-    
 
-    
+
+
 input[type=submit] {
     background-color: #FF9677;
     border: 1px solid #FF9677;
@@ -226,7 +362,12 @@ input[type=submit] {
     width: 100%;
     margin-top: 30px;
 }
-    
+
+input[type=number] {
+    width: 40px;
+    margin-right: 30px;
+}
+
 input[type=color] {
     padding: 0;
     background-color: white;
@@ -234,12 +375,13 @@ input[type=color] {
     height: 40px;
     width: 40px;
 }
-    
+
 div#dragBox {
+z-index:1000000;
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 20px;
-  min-width: 30%;
+  min-width: 0.5%;
   background-color: #ffffff;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -251,7 +393,7 @@ div#dragBox {
     padding: 20px;
   cursor: move;
 }
- 
+
 div#dragBox h3 {
   margin: 20px 0 20px 0;
   height: 25px;

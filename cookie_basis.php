@@ -10,5 +10,10 @@
   setcookie("text_schriftstaerke",$_GET['text_schriftstaerke'],time()+(3600*365));
   setcookie("text_schriftgroesse",$_GET['text_schriftgroesse'],time()+(3600*365));
   setcookie("textfarbe",$_GET['textfarbe'],time()+(3600*365));
+  setcookie("navifarbe",$_GET['navifarbe'],time()+(3600*365));
+  setcookie("navischrift",$_GET['navischrift'],time()+(3600*365));
+  setcookie("navibreite",$_GET['navibreite'],time()+(3600*365));
+  setcookie("hoverfarbe",$_GET['hoverfarbe'],time()+(3600*365));
+  setcookie("hoverschrift",$_GET['hoverschrift'],time()+(3600*365));
   header('Location: live_vorschau.php');
 ?>
