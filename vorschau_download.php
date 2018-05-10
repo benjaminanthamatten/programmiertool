@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <?php
 
-  include("style.php");
+  include("style_download.php");
+    header("Refresh: 10; url=vorschau_download.php");
 ?>
+
 
 <html lang="de">
   <head>
@@ -18,15 +19,39 @@
 <link href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
 
-    <link rel="stylesheet" type="php" href="style.php">
     <title>Programmier-Tool</title>
   </head>
 
-<?php
-    include("editor.php");
-?>
 
   <body>
+      
+<?php 
+    if(isset($_GET['download_anleitung'])){
+?>
+      
+<script type="text/javascript">
+function countDown(init)
+{
+if (init || --document.getElementById( "counter" ).firstChild.nodeValue > 0 )
+    window.setTimeout( "countDown()" , 1000 );
+};
+</script>
+      
+<body onload="countDown(true)">
+
+        <div id="download_anleitung">
+            <div id="download_inhalt">
+                <h1>Um die Webseite herunterzuladen drücken Sie <strong>nach </strong><span id="counter">10</span> Sekunden...</h1><br>
+                <p>... die Tasten <span class="taste">Ctrl</span> + <span class="taste">S</span> bei einem Windows oder Linux-Computer</p>
+                <p>... oder die Tasten <span class="taste">cmd ⌘</span> + <span class="taste">S</span> auf einem MAC-Computer (OS X)</p>
+                <br><a class="taste" href="index.php">Abbrechen / Zurück zum Editor</a>
+            </div>
+        </div>
+</body>
+<?php
+    }
+?>
+      
       
     <?php 
       $start = 1;
@@ -52,7 +77,6 @@
       $start_anzahl = 1;
       while($start_anzahl <= $_COOKIE["anzahl"]){
           
-        echo "<a class='box-edit' href='?box_einstellungen=on&box=".$start_anzahl."'>";
             echo "<div id='box_". $start_anzahl ."'>";
             echo "<div id='box_inhalt_". $start_anzahl ."'>";
 
@@ -80,7 +104,6 @@
                 }
             echo "</div>";
             echo "</div>";
-        echo "</a>";
 
         $start_anzahl++;
       }

@@ -290,7 +290,7 @@
         <input type="submit" value="speichern">
     </form>
   <br>
-  <a href="download.php">Quellcode herunterladen</a>
+  <a class="speichern" href="vorschau_download.php?download_anleitung=ja">Webseite speichern</a>
   </div>
 
 
@@ -304,6 +304,17 @@
 
 .versteckt {
     display: none;
+}
+    
+.speichern {
+    background-color: darkseagreen;
+    color: white;
+    padding: 10px;
+    font-family: sans-serif;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
     
 img.schliessen {

@@ -1,0 +1,4 @@
+Ein Feature von uns war die Sicherheit:
+- Da wir nun die Webapplikation so lösen konnte, dass alle Eingaben nur Browserseitig gespeichert werden, war eine Überprüfung des Formulars nicht mehr nötig. 
+- Der User kann höchstens seinen eigenen Browser zum Absturz bringen.
+- Somit ist die Applikation 100% sicher, denn es besteht keine Verbindung zu einer Datenbank. 
