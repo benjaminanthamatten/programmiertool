@@ -19,7 +19,7 @@
 }
 
 #download_inhalt{
-    background-color: rgba(255,255,255);
+    background-color: white;
     width: 50%;
     margin: auto;
     margin-top: 10%;
@@ -39,6 +39,18 @@
     color: white;
     text-decoration: none;
     font-family: sans-serif;
+}
+    
+.schliessen{
+    background-color: red;
+    float: right;
+    margin: -20px -20px 0 0;
+    padding: 5px 10px;
+    color: white;
+    font-family: sans-serif;
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+    border-radius: 0 5px 0 0;
 }
 
     

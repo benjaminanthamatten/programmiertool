@@ -2,7 +2,6 @@
 <?php
 
   include("style_download.php");
-    header("Refresh: 10; url=vorschau_download.php");
 ?>
 
 
@@ -29,29 +28,18 @@
     if(isset($_GET['download_anleitung'])){
 ?>
       
-<script type="text/javascript">
-function countDown(init)
-{
-if (init || --document.getElementById( "counter" ).firstChild.nodeValue > 0 )
-    window.setTimeout( "countDown()" , 1000 );
-};
-</script>
-      
-<body onload="countDown(true)">
-
         <div id="download_anleitung">
             <div id="download_inhalt">
-                <h1>Um die Webseite herunterzuladen drücken Sie <strong>nach </strong><span id="counter">10</span> Sekunden...</h1><br>
+                <a href="vorschau_download.php"><div class="schliessen">x</div></a>
+                <h1>Um die Webseite herunterzuladen schliessen Sie dieses Fenster und drücken Sie anschliessend...</h1><br>
                 <p>... die Tasten <span class="taste">Ctrl</span> + <span class="taste">S</span> bei einem Windows oder Linux-Computer</p>
                 <p>... oder die Tasten <span class="taste">cmd ⌘</span> + <span class="taste">S</span> auf einem MAC-Computer (OS X)</p>
                 <br><a class="taste" href="index.php">Abbrechen / Zurück zum Editor</a>
             </div>
         </div>
-</body>
 <?php
     }
 ?>
-      
       
     <?php 
       $start = 1;
