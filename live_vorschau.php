@@ -62,7 +62,9 @@
                 if(isset($_COOKIE["voreinstellungen_$start_anzahl"])){
 					if(isset($_COOKIE["fliesstext_$start_anzahl"])){
                     echo "<p>".$_COOKIE["fliesstext_$start_anzahl"]."</p>";
-					}
+					}else {
+                     echo "<br>";   
+                    }
                 }else{
                     echo "<p>Keine Voreinstellungen</p>";
                 }
